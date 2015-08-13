@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<html ng-app="tallyApp"
+<head>
+	<meta charset="UTF-8">
+
+	<title>Fix this</title>
+
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		body {
+			font-family: sans-serif;
+			font-color: #686b6e;
+			background-color: white;
+		}
+		.jumbotron {
+			color: white;
+			background-color: #4a5155;
+			/*background-color: #A9A9A9;*/
+		}
+		.btn {
+			background-color: white;
+			border: clear;
+			font-weight: 700;
+			color: #4a5155;
+		}
+		.label {
+			color: #00BD7E;
+			background-color: white;
+		}
+		.form-control {
+			color: black;
+			font-weight: 200;
+		}
+	</style>
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="core.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" href="public/style.css"> -->
+
+</head>
+
+<!-- controller and get all posts -->
+<body ng-controller="MainCtrl">
+	<div class="container">
+
+		<!-- header and post count -->
+		<div class="jumbotron text-center">
+			<h1>Tally of Items: <span class="label label-info">{{ posts.length }}</span></h1>
+		</div>
+	
+	<!-- post list -->
+	<div id="post-list" class="row">
+		<div class="col-md-6 col-md-offset-3">
+
+			<!-- loop over posts in $scope.posts -->
+			<div class="checkbox" ng-repeat="post in posts">
+				<span style="font-size:20px; margin-left:10px;">
+				<input type="checkbox" ng-click="deletePost(post._id)"> {{ post.text }}
+				{{post.amount | currency}} {{post.date | date: 'MM/d/y'}}	
+				</span>	
+			</div>
+		</div>
+	</div>
+
+	<!-- form to create posts -->
+	<div id="post-form" class="row">
+		<div class="col-sm-8 col-sm-offset-2 text-center">
+			<form style="margin-top:30px;">
+				<div class="form-group">
+					<!-- value binded to formData.text -->
+					<input type="text" class="form-control input-lg text" placeholder="Item" ng-model="formData.text">
+				</div>
+				<div class="form-group">
+					<!-- value binded to formData.text -->
+					<input type="number" class="form-control input-lg text" placeholder="Amount" ng-model="formData.amount">
+				</div>
+				<div class="form-group">
+					<!-- value binded to formData.text -->
+					<input type="date" class="form-control input-lg text" placeholder="Date" ng-model="formData.date">
+				</div>
+
+				<!-- createPost() will create new Posts -->
+				<button type="submit" class="btn btn-primary" ng-click="createPost()">Tally</button>
+			</form>
+			 <h3>Total:  <td>{{total() | currency}}</td></h3>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
