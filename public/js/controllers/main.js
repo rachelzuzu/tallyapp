@@ -32,6 +32,7 @@ angular.module('postController', [])
 		$scope.total = function() {
 			var total = 0;
 			angular.forEach($scope.posts, function(post) {
+				// lodash
 	        total += post.amount;
 	    })
 	    return total;
