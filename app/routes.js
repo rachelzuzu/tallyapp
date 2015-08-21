@@ -59,6 +59,6 @@ module.exports = function(app) {
 
 	// add route for front end angular
 	app.get('*', function(req, res) {
-		res.sendFile( './public/index.html');
+		res.sendFile( './public/views/index.html');
 	});
 };
